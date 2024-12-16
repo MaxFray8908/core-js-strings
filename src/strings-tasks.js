@@ -352,8 +352,15 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const arrayWord = sentence.split(' ');
+  let maxWord = '';
+  for (let i = 0; i < arrayWord.length; i += 1) {
+    if (maxWord.length < arrayWord[i].length) {
+      maxWord = arrayWord[i];
+    }
+  }
+  return maxWord;
 }
 
 /**
@@ -389,8 +396,17 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const arraySymbol = str.split('');
+  let newStr = '';
+  for (let i = 0; i < arraySymbol.length; i += 1) {
+    if (arraySymbol[i] === arraySymbol[i].toUpperCase()) {
+      newStr += arraySymbol[i].toLowerCase();
+    } else {
+      newStr += arraySymbol[i].toUpperCase();
+    }
+  }
+  return newStr;
 }
 
 /**
@@ -406,8 +422,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -454,8 +470,8 @@ function unbracketTag(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -474,8 +490,27 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  let newStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const codeSymbol = str[i].codePointAt(0);
+    if (codeSymbol >= 65 && codeSymbol <= 90) {
+      if (codeSymbol + 13 > 90) {
+        newStr += String.fromCodePoint(13 + codeSymbol - 90 + 64);
+      } else {
+        newStr += String.fromCodePoint(codeSymbol + 13);
+      }
+    } else if (codeSymbol >= 97 && codeSymbol <= 122) {
+      if (codeSymbol + 13 > 122) {
+        newStr += String.fromCodePoint(13 + codeSymbol - 122 + 96);
+      } else {
+        newStr += String.fromCodePoint(codeSymbol + 13);
+      }
+    } else {
+      newStr += str[i];
+    }
+  }
+  return newStr;
 }
 
 /**
@@ -502,8 +537,62 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cardDeck = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return cardDeck.indexOf(value);
 }
 
 module.exports = {
